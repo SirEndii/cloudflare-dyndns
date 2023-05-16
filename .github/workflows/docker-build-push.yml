@@ -23,6 +23,11 @@ jobs:
       - name: Lowercase repository owner
         run: |
           echo "REPO_OWNER=$(echo ${GITHUB_REPOSITORY_OWNER} | tr '[:upper:]' '[:lower:]')" >> ${GITHUB_ENV}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ghcr.io/${{ github.repository }}
       - name: Build and push image to GitHub Packages
         id: docker_build
         uses: docker/build-push-action@v2
@@ -32,3 +37,4 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm/v6
           tags: ghcr.io/${{ env.REPO_OWNER }}/cloudflare-dyndns:latest
+          labels: ${{ steps.meta.outputs.labels }}
