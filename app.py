@@ -74,4 +74,4 @@ def put_dns_record(cf, zones, record, zone, ipv4, ipv6):
 
 
 app.secret_key = os.urandom(24)
-waitress.serve(app, host='0.0.0.0', port=80)
+waitress.serve(app, host='0.0.0.0', port=89)
