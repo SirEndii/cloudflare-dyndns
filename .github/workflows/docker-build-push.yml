@@ -18,7 +18,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: "srendi"
           password: ${{ secrets.GHCR_TOKEN }}
       - name: Lowercase repository owner
         run: |
@@ -27,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: packages.intelligence-modding.de//p/cloudflaredyndns/containers/cloudflare-dyndns
       - name: Build and push image to GitHub Packages
         id: docker_build
         uses: docker/build-push-action@v2
@@ -36,5 +36,5 @@ jobs:
           context: ./
           push: true
           platforms: linux/amd64,linux/arm/v6
-          tags: ghcr.io/${{ env.REPO_OWNER }}/cloudflare-dyndns:latest
+          tags: packages.intelligence-modding.de//p/cloudflaredyndns/containers/cloudflare-dyndns:latest
           labels: ${{ steps.meta.outputs.labels }}
