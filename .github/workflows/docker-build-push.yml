@@ -1,4 +1,4 @@
-name: Build and push Docker images to GitHub Packages
+name: Build and push Docker images to Intelligence Packages
 on:
   push:
   workflow_dispatch:
@@ -36,5 +36,5 @@ jobs:
           context: ./
           push: true
           platforms: linux/amd64,linux/arm/v6
-          tags: packages.intelligence-modding.de//p/cloudflaredyndns/containers/cloudflare-dyndns:latest
+          tags: cloudflare-dyndns:latest
           labels: ${{ steps.meta.outputs.labels }}
